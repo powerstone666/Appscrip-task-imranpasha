@@ -34,14 +34,16 @@
     display: grid;
     grid-template-columns:repeat(4,1fr);
     gap: 20px;
+    overflow-x: scroll;
     padding: 20px;
+    width: 100%;
 }
 .main-sidebar{
     width: 250px;
     margin-right: 40px;
 }
 #collection-img{
-    height: 120px;
+    height: 180px;
 }
 .main-item{
     border:1px solid whitesmoke;
@@ -49,7 +51,7 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 30px;
     justify-content: center;
     
 }
@@ -73,6 +75,7 @@
     .main-items{
         display: grid;
         grid-template-columns:repeat(2,1fr);
+        gap:20px;
         white-space: nowrap;     
   overflow-y: scroll;         
   text-overflow: ellipsis;

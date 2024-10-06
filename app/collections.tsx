@@ -3,12 +3,22 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import styles from './main.module.css';
 import Footer from './foot';
+interface Product {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+  
+}
+
 
 function Collections() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Product[]>([]);
+
   const [showSidebar, setShowSidebar] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [openSection, setOpenSection] = useState(null); // Track which section is open
+  const [openSection, setOpenSection] = useState<string | null>(null);
+
 
   const handleResize = () => {
     setShowSidebar(window.innerWidth > 768);
@@ -31,10 +41,10 @@ function Collections() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-
-  const toggleSection = (section) => {
-    setOpenSection(prev => (prev === section ? null : section)); // Toggle section
+  const toggleSection = (section: string | null) => {
+    setOpenSection(prev => (prev === section ? null : section));
   };
+  
 const toggleSidebar = () => {
   setShowSidebar(!showSidebar);
 };
@@ -45,21 +55,7 @@ const toggleSidebar = () => {
         <title>Product Collections | Your Store</title>
         <meta name="description" content="Browse a selection of products from various categories including men, women, and kids." />
         <meta name="keywords" content="products, eCommerce, collections, filters" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ProductCollection",
-            "name": "Product Collection",
-            "description": "Browse a selection of products from various categories.",
-            "url": "https://yourstore.com/collections",
-            "itemListElement": data.map((item) => ({
-              "@type": "Product",
-              "name": item.title,
-              "image": item.image,
-              "price": item.price,
-            }))
-          })}
-        </script>
+      
       </Head>
 
       <div style={{ height: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
@@ -171,15 +167,25 @@ const toggleSidebar = () => {
                   </div>
                 )}
 
-                <div className={styles['main-items']}>
-                  {data.map((item, index) => (
-                    <div className={styles['main-item']} key={index}>
-                      <img src={item.image} alt={item.title} id={styles["collection-img"]} loading="lazy" />
-                      <p style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", width: "120px" }}>{item.title}</p>
-                      <p>${item.price}</p>
-                    </div>
-                  ))}
-                </div>
+<div className={styles['main-items']}>
+  {data.map((item, index) => (
+    <div className={styles['main-item']} key={index}>
+      {item.image && (
+        <img 
+          src={item.image} 
+          alt={item.title} 
+          className={styles["collection-img"]} 
+          loading="lazy" 
+          width={150} 
+          height={150} 
+        />
+      )}
+      <p style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", width: "120px" }}>{item.title}</p>
+      <p>${item.price}</p>
+    </div>
+  ))}
+</div>
+
               </>
             )}
           </div>
