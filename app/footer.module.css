@@ -1,0 +1,51 @@
+.footer {
+    background-color:black;
+    color:white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    bottom:0;
+    width: 100%;
+    overflow: hidden;
+    
+  }
+  
+  .footer-top {
+    margin-bottom: 20px;
+  }
+  
+  .contact-info p, .email-subscribe {
+    margin: 10px 0;
+  }
+  
+  .email-subscribe input {
+    padding: 5px;
+    margin-right: 5px;
+  }
+  
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .footer-section {
+    flex: 1;
+    padding: 0 10px;
+  }
+  
+  .footer-section ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 5px;
+    cursor: pointer;
+  }
+  
+  .footer-legal {
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+  }
+  
